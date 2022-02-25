@@ -1,4 +1,4 @@
-package com.example.scheduler_unihack;
+package com.example.scheduler_timetable;
 
 import org.junit.Test;
 
