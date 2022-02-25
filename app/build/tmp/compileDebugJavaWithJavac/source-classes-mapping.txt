@@ -1,4 +1,0 @@
-com/example/scheduler_unihack/MainActivity.java
- com.example.scheduler_unihack.MainActivity
-com/example/scheduler_unihack/BuildConfig.java
- com.example.scheduler_unihack.BuildConfig
