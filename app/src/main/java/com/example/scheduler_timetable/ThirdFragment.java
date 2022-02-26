@@ -1,47 +1,161 @@
-package com.example.scheduler_timetable;
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEEDE"
+    android:backgroundTint="#FFEEDE"
+    android:textAlignment="center"
+    tools:context=".ThirdFragment">
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#FFFBD7"
+        android:gravity="center_vertical"
+        android:text="Timetable"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="3dp" />
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="M"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-import com.example.scheduler_timetable.databinding.FragmentThirdBinding;
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="T"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-public class ThirdFragment extends Fragment {
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="W"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-    private FragmentThirdBinding binding;
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="T"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="F"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="294dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-        binding = FragmentThirdBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="S"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-    }
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:text="S"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-    /*public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="323dp"
+        tools:layout_editor_absoluteY="365dp" />
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_ThirdFragment);
-            }
-        });
-    }*/
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="260dp" />
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="241dp" />
 
-}
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="145dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ScrollView
+        android:layout_width="379dp"
+        android:layout_height="536dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="179dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

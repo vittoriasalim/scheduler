@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEEDE"
-    android:backgroundTint="#FFEEDE"
-    android:textAlignment="center"
-    tools:context=".ThirdFragment">
+    android:background="#E5E5E5"
+    android:backgroundTint="#E5E5E5"
+    tools:context=".SecondFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -23,88 +21,6 @@
         android:textSize="34sp"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="3dp" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="M"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="T"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="W"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="T"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="239dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="F"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="294dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="S"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="350dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:background="#FFC107"
-        android:text="S"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="115dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:layout_width="wrap_content"
@@ -140,22 +56,22 @@
         tools:layout_editor_absoluteX="124dp"
         tools:layout_editor_absoluteY="100dp" />
 
-    <ScrollView
-        android:layout_width="379dp"
-        android:layout_height="536dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="179dp">
+    <ListView
+        style="@android:style/Widget.DeviceDefault.Light.ExpandableListView"
+        android:layout_width="409dp"
+        android:layout_height="566dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
+        android:entries="@array/timeslots"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="136dp" />
+            android:layout_height="match_parent" />
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
