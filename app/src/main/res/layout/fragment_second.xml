@@ -135,7 +135,7 @@
             android:layout_height="40dp"
             android:background="@drawable/border"
             android:backgroundTint="#EADCC7"
-            android:hint="Please input an event"
+            android:hint="  Please input an event"
             android:textStyle="italic" />
     </com.google.android.material.textfield.TextInputLayout>
 
