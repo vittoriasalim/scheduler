@@ -17,6 +17,7 @@ public class ThirdFragment extends Fragment {
 
     @Override
     public View onCreateView(
+
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
@@ -26,7 +27,6 @@ public class ThirdFragment extends Fragment {
 
     }
 
-  
 
     @Override
     public void onDestroyView() {
