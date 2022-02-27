@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<catalog>
+    <event id="event1">
+        <event_name>COMP2017<event_name>
+        <time_availability id="t_avail1">
+            <day>1</day>
+            <start_time>1200</start_time>
+            <end_time>1300</end_time>
+        </time_availability>
+        <time_availability id="t_avail2">
+            <day>2</day>
+            <start_time>1400</start_time>
+            <end_time>1500</end_time>
+        </time_availability>
+    </event>
+    <event id="event2">
+        <event_name>INFO2222<event_name>
+        <time_availability id="t_avail1">
+            <day>2</day>
+            <start_time>1200</start_time>
+            <end_time>1400</end_time>
+        </time_availability>
+        <time_availability id="t_avail2">
+            <day>4</day>
+            <start_time>1300</start_time>
+            <end_time>1500</end_time>
+        </time_availability>
+        <time_availability id="t_avail3">
+            <day>1</day>
+            <start_time>1000</start_time>
+            <end_time>1200</end_time>
+        </time_availability>
+    </event>
+    <event id="event3">
+        <event_name>SOFT2412<event_name>
+        <time_availability id="t_avail1">
+            <day>2</day>
+            <start_time>1200</start_time>
+            <end_time>1400</end_time>
+        </time_availability>
+        <time_availability id="t_avail2">
+            <day>4</day>
+            <start_time>1300</start_time>
+            <end_time>1500</end_time>
+        </time_availability>
+    </event>
+</catalog>
