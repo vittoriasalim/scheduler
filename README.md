@@ -4,7 +4,7 @@ Our team creates a tool to help students find an optimal and preferred scheduler
 Sample Input: <br />
 - COMP2017;1;1100;1200
 - COMP2017;2;1100;1200
-- INFO2222;1;1000;1200 <br /><br />
+- INFO2222;1;1000;1200 <br />
 There are 2 units which are called "COMP2017" and "INFO2222". Unit COMP2017 have 2 options which are for Monday and Tuesday from 11am to 12pm.
 With our tool, the student will get different possible schedules for COMP2017 and INFO2222. <br />
 
