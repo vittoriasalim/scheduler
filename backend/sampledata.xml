@@ -5,12 +5,12 @@
         <time_availability id="t_avail1">
             <day>1</day>
             <start_time>1200</start_time>
-            <end_tie>1300</end_time>
+            <end_time>1300</end_time>
         </time_availability>
         <time_availability id="t_avail2">
             <day>2</day>
             <start_time>1400</start_time>
-            <end_tie>1500</end_time>
+            <end_time>1500</end_time>
         </time_availability>
     </event>
     <event id="event2">
@@ -18,17 +18,17 @@
         <time_availability id="t_avail1">
             <day>2</day>
             <start_time>1200</start_time>
-            <end_tie>1400</end_time>
+            <end_time>1400</end_time>
         </time_availability>
         <time_availability id="t_avail2">
             <day>4</day>
             <start_time>1300</start_time>
-            <end_tie>1500</end_time>
+            <end_time>1500</end_time>
         </time_availability>
         <time_availability id="t_avail3">
             <day>1</day>
             <start_time>1000</start_time>
-            <end_tie>1200</end_time>
+            <end_time>1200</end_time>
         </time_availability>
     </event>
     <event id="event3">
@@ -36,12 +36,12 @@
         <time_availability id="t_avail1">
             <day>2</day>
             <start_time>1200</start_time>
-            <end_tie>1400</end_time>
+            <end_time>1400</end_time>
         </time_availability>
         <time_availability id="t_avail2">
             <day>4</day>
             <start_time>1300</start_time>
-            <end_tie>1500</end_time>
+            <end_time>1500</end_time>
         </time_availability>
     </event>
 </catalog>
