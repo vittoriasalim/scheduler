@@ -1,40 +1,5 @@
 import java.util.ArrayList;
 
-class Node<E> {
-    E Data;
-    ArrayList<Node<E>> Child;
-
-    public Node(E Data) {
-        this.Data = Data;
-        this.Child = new ArrayList<Node<E>>();
-    }
-    public E getData() { return this.Data; }
-    public ArrayList<Node<E>> getChild() { return this.Child; }
-}
-
-class Unit {
-
-    private String Name;
-    private int Day;
-    private int StartTime;
-    private int EndTime;
-
-    public Unit(String Name, int Day, int StartTime, int EndTime) {
-
-        this.Name = Name;
-        this.Day = Day;
-        this.StartTime = StartTime;
-        this.EndTime = EndTime;
-    }
-
-    public int getStartTime() { return this.StartTime; }
-    public int getEndTime() { return this.EndTime; }
-    public int getDay() { return this.Day; }
-    
-    @Override
-    public String toString() { return this.Name; }
-}
-
 public class Timetable {
 
     private ArrayList<ArrayList<Unit>> choices;
@@ -91,6 +56,7 @@ public class Timetable {
 		printAllRootToLeafPaths(root, vector, this.choices);
 	}
 
+    // Preferences
     // Function to check whether there is any units clashing
     public static boolean isClash(ArrayList<Unit> path) {
 
@@ -116,7 +82,11 @@ public class Timetable {
         ArrayList<Integer> days = new ArrayList<Integer>();
         for (int i = 0; i < path.size(); i++) {
 
-            if (!days.contains(path.get(i).getDay())) {
+            int day = path.get(i).getDay();
+            if (day == -1) { // IGNORE THE ROOT
+                continue;
+            }
+            if (!days.contains(day)) {
 
                 days.add(path.get(i).getDay());
             }
@@ -169,13 +139,13 @@ public class Timetable {
 	public static void main(String[] args) {
 
         Unit empty_unit = new Unit("ROOT", -1, -1, -1);
-        Unit u11 = new Unit("u1.1", 1, 1200, 1300);
-        Unit u12 = new Unit("u1.2", 2, 1400, 1500);
-        Unit u21 = new Unit("u2.1", 2, 1200, 1400);
-        Unit u22 = new Unit("u2.2", 4, 1300, 1500);
-        Unit u23 = new Unit("u2.3", 1, 1000, 1200);
-        Unit u31 = new Unit("u3.1", 2, 1200, 1400);
-        Unit u32 = new Unit("u3.2", 4, 1300, 1500);
+        Unit u11 = new Unit("COMP2017.1", 1, 1200, 1300);
+        Unit u12 = new Unit("COMP2017.2", 2, 1400, 1500);
+        Unit u21 = new Unit("INFO2222.1", 2, 1200, 1400);
+        Unit u22 = new Unit("INFO2222.2", 4, 1300, 1500);
+        Unit u23 = new Unit("INFO2222.3", 1, 1000, 1200);
+        Unit u31 = new Unit("SOFT2412.1", 2, 1200, 1400);
+        Unit u32 = new Unit("SOFT2412.2", 4, 1300, 1500);
 
         Node<Unit> root = new Node<Unit>(empty_unit);
         Node<Unit> u11Node = new Node<Unit>(u11);
@@ -215,14 +185,41 @@ public class Timetable {
 		Timetable t = new Timetable();
         t.printAllRootToLeafPaths(root);
 
+        // Preferences
+        int numberOfDays = 2;
+        int numberOfMinutes = 0;
+        boolean wantsMorning = true;
+        boolean wantsAfternoon = false;
+
+        // Displaying the result
+        int index = 1;
         for (ArrayList<Unit> c : t.choices) {
 
+            if (isClash(c)) {
+                continue;
+            }
+            if (!isSatisfyDayInterval(numberOfDays, c)) {
+                continue;
+            }
+            if (!isSatisfyTimeInterval(numberOfMinutes, c)) {
+                continue;
+            }
+            if (isMorning(c) && wantsMorning) {
+                continue;
+            }
+            if (isAfternoon(c) && wantsAfternoon) {
+                continue;
+            }
+
+            System.out.println("Possible Schedule No. " + index);
             for (Unit c1 : c) {
+                if (c1.toString() == "ROOT") {
+                    continue;
+                }
                 System.out.print(c1 + " ");
             }
-            System.out.print("| Clashing: " + isClash(c));
-            System.out.println(" | isSatisfyDayInterval: " + isSatisfyDayInterval(3, c));
-
+            System.out.println("\n");
+            index++;
         }
 	}
 }
