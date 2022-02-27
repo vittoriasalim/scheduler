@@ -27,7 +27,6 @@ public class ThirdFragment extends Fragment {
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

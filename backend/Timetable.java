@@ -11,53 +11,53 @@ public class Timetable {
         this.choices = new ArrayList<ArrayList<Unit>>();
     }
 
-    // Function to print the root to leaf path of the given N-ary Tree
-    public void printPath(ArrayList<Unit> vector, ArrayList<ArrayList<Unit>> choices) {
-
+	// Function to print the root to leaf path of the given N-ary Tree
+	public void printPath(ArrayList<Unit> vector, ArrayList<ArrayList<Unit>> choices) {
+	
         ArrayList<Unit> choice = new ArrayList<Unit>();
 
-        // Print elements in the vector
-        for (Unit elements : vector) {
+		// Print elements in the vector
+		for (Unit elements : vector) {
             choice.add(elements);
-        }
+		}
         this.choices.add(choice);
-    }
+	}
 
-    // Utility function to print all root to leaf paths of an Nary Tree
-    public void printAllRootToLeafPaths(Node<Unit> root, ArrayList<Unit> vec, ArrayList<ArrayList<Unit>> choices) {
+	// Utility function to print all root to leaf paths of an Nary Tree
+	public void printAllRootToLeafPaths(Node<Unit> root, ArrayList<Unit> vec, ArrayList<ArrayList<Unit>> choices) {
 
-        // Insert current node's data into the vector
-        vec.add(root.getData());
+		// Insert current node's data into the vector
+		vec.add(root.getData());
 
-        // If current node is a leaf node
-        if (root.getChild().isEmpty()) {
+		// If current node is a leaf node
+		if (root.getChild().isEmpty()) {
 
-            // Print the path
-            printPath(vec, choices);
+			// Print the path
+			printPath(vec, choices);
 
-            // Pop the leaf node and return
-            vec.remove(vec.size() - 1);
-            return;
-        }
+			// Pop the leaf node and return
+			vec.remove(vec.size() - 1);
+			return;
+		}
 
-        // Recur for all children of the current node
-        for (int i = 0; i < root.getChild().size(); i++)
+		// Recur for all children of the current node
+		for (int i = 0; i < root.getChild().size(); i++)
 
-            // Recursive Function Call
-            printAllRootToLeafPaths(root.getChild().get(i), vec, choices);
+			// Recursive Function Call
+			printAllRootToLeafPaths(root.getChild().get(i), vec, choices);
 
-        vec.remove(vec.size() - 1);
-    }
+		vec.remove(vec.size() - 1);
+	}
 
-    // Function to print root to leaf path
-    public void printAllRootToLeafPaths(Node<Unit> root) {
+	// Function to print root to leaf path
+	public void printAllRootToLeafPaths(Node<Unit> root) {
 
-        // Stores the root to leaf path
-        ArrayList<Unit> vector = new ArrayList<Unit>();
+		// Stores the root to leaf path
+		ArrayList<Unit> vector = new ArrayList<Unit>();
 
-        // Utility function call
-        printAllRootToLeafPaths(root, vector, this.choices);
-    }
+		// Utility function call
+		printAllRootToLeafPaths(root, vector, this.choices);
+	}
 
     // Preferences
     // Function to check whether there is any units clashing
@@ -149,17 +149,17 @@ public class Timetable {
             String checkName = ".";
             int index = 0;
             ArrayList<Node<Unit>> layer = new ArrayList<Node<Unit>>();
-
+            
             Node<Unit> root = new Node<Unit>(new Unit("ROOT", -1, -1, -1));
             ArrayList<Node<Unit>> firstElement = new ArrayList<Node<Unit>>();
             firstElement.add(root);
             arrLayers.add(firstElement);
 
             while (myReader.hasNextLine()) {
-
+                
                 String data = myReader.nextLine();
                 String[] unitInfo = data.split(";");
-
+                
                 String name = unitInfo[0];
                 if (name.contains(checkName)) {
                     index += 1;
@@ -167,7 +167,7 @@ public class Timetable {
 
                     // Final data
                     if (!myReader.hasNextLine()) { arrLayers.add(layer); }
-
+                    
                 } else {
                     if (layer.size() != 0) { arrLayers.add(layer); }
 
@@ -179,10 +179,10 @@ public class Timetable {
                 int day = Integer.parseInt(unitInfo[1]);
                 int startTime = Integer.parseInt(unitInfo[2]);
                 int endTime = Integer.parseInt(unitInfo[3]);
-
+                
                 // Create a Unit object
                 Unit unit = new Unit(name, day, startTime, endTime);
-
+                
                 // Create the Node
                 Node<Unit> unitNode = new Node<Unit>(unit);
                 layer.add(unitNode);
@@ -214,14 +214,14 @@ public class Timetable {
         return null;
     }
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        // Function Call
-        Timetable t = new Timetable();
+		// Function Call
+		Timetable t = new Timetable();
         ArrayList<ArrayList<Node<Unit>>> data = readFromFile("sampledata2.csv");
 
         t.printAllRootToLeafPaths(data.get(0).get(0));
-
+        
         // Preferences
         int numberOfDays = 2;
         int numberOfMinutes = 0;
@@ -272,7 +272,7 @@ public class Timetable {
             System.out.println();
             index++;
         }
-    }
+	}
 }
 
 // printPath(), printAllRootToLeafPaths(), printAllRootToLeafPaths() codes are contributed by sanjeev2552
