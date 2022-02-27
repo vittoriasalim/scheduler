@@ -254,14 +254,22 @@ public class Timetable {
                 continue;
             }
 
+            String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             System.out.println("Possible Schedule No. " + index);
+            System.out.println("----------------+---------------+---------------+---------------");
+            System.out.println("Event\t\t| Day\t\t| Start Time\t| End Time");
+            System.out.println("----------------+---------------+---------------+---------------");
             for (Unit c1 : c) {
                 if (c1.toString() == "ROOT") {
                     continue;
                 }
-                System.out.print(c1 + " ");
+                System.out.print(c1 + "\t| ");
+                System.out.print(String.format("%-14s", days[c1.getDay() - 1]) + "| ");
+                System.out.print(String.format("%-14s", c1.getStartTime()));
+                System.out.println("| " + c1.getEndTime());
             }
-            System.out.println("\n");
+            System.out.println("----------------+---------------+---------------+---------------");
+            System.out.println();
             index++;
         }
 	}
