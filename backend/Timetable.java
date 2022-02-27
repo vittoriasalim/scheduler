@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Timetable {
 
@@ -8,53 +11,53 @@ public class Timetable {
         this.choices = new ArrayList<ArrayList<Unit>>();
     }
 
-	// Function to print the root to leaf path of the given N-ary Tree
-	public void printPath(ArrayList<Unit> vector, ArrayList<ArrayList<Unit>> choices) {
-	
+    // Function to print the root to leaf path of the given N-ary Tree
+    public void printPath(ArrayList<Unit> vector, ArrayList<ArrayList<Unit>> choices) {
+
         ArrayList<Unit> choice = new ArrayList<Unit>();
 
-		// Print elements in the vector
-		for (Unit elements : vector) {
+        // Print elements in the vector
+        for (Unit elements : vector) {
             choice.add(elements);
-		}
+        }
         this.choices.add(choice);
-	}
+    }
 
-	// Utility function to print all root to leaf paths of an Nary Tree
-	public void printAllRootToLeafPaths(Node<Unit> root, ArrayList<Unit> vec, ArrayList<ArrayList<Unit>> choices) {
+    // Utility function to print all root to leaf paths of an Nary Tree
+    public void printAllRootToLeafPaths(Node<Unit> root, ArrayList<Unit> vec, ArrayList<ArrayList<Unit>> choices) {
 
-		// Insert current node's data into the vector
-		vec.add(root.getData());
+        // Insert current node's data into the vector
+        vec.add(root.getData());
 
-		// If current node is a leaf node
-		if (root.getChild().isEmpty()) {
+        // If current node is a leaf node
+        if (root.getChild().isEmpty()) {
 
-			// Print the path
-			printPath(vec, choices);
+            // Print the path
+            printPath(vec, choices);
 
-			// Pop the leaf node and return
-			vec.remove(vec.size() - 1);
-			return;
-		}
+            // Pop the leaf node and return
+            vec.remove(vec.size() - 1);
+            return;
+        }
 
-		// Recur for all children of the current node
-		for (int i = 0; i < root.getChild().size(); i++)
+        // Recur for all children of the current node
+        for (int i = 0; i < root.getChild().size(); i++)
 
-			// Recursive Function Call
-			printAllRootToLeafPaths(root.getChild().get(i), vec, choices);
+            // Recursive Function Call
+            printAllRootToLeafPaths(root.getChild().get(i), vec, choices);
 
-		vec.remove(vec.size() - 1);
-	}
+        vec.remove(vec.size() - 1);
+    }
 
-	// Function to print root to leaf path
-	public void printAllRootToLeafPaths(Node<Unit> root) {
+    // Function to print root to leaf path
+    public void printAllRootToLeafPaths(Node<Unit> root) {
 
-		// Stores the root to leaf path
-		ArrayList<Unit> vector = new ArrayList<Unit>();
+        // Stores the root to leaf path
+        ArrayList<Unit> vector = new ArrayList<Unit>();
 
-		// Utility function call
-		printAllRootToLeafPaths(root, vector, this.choices);
-	}
+        // Utility function call
+        printAllRootToLeafPaths(root, vector, this.choices);
+    }
 
     // Preferences
     // Function to check whether there is any units clashing
@@ -136,60 +139,100 @@ public class Timetable {
         return true;
     }
 
-	public static void main(String[] args) {
+    public static ArrayList<ArrayList<Node<Unit>>> readFromFile(String filePath) {
 
-        Unit empty_unit = new Unit("ROOT", -1, -1, -1);
-        Unit u11 = new Unit("COMP2017.1", 1, 1200, 1300);
-        Unit u12 = new Unit("COMP2017.2", 2, 1400, 1500);
-        Unit u21 = new Unit("INFO2222.1", 2, 1200, 1400);
-        Unit u22 = new Unit("INFO2222.2", 4, 1300, 1500);
-        Unit u23 = new Unit("INFO2222.3", 1, 1000, 1200);
-        Unit u31 = new Unit("SOFT2412.1", 2, 1200, 1400);
-        Unit u32 = new Unit("SOFT2412.2", 4, 1300, 1500);
+        try {
+            File fileObject = new File(filePath);
+            Scanner myReader = new Scanner(fileObject);
 
-        Node<Unit> root = new Node<Unit>(empty_unit);
-        Node<Unit> u11Node = new Node<Unit>(u11);
-        Node<Unit> u12Node = new Node<Unit>(u12);
-        Node<Unit> u21Node = new Node<Unit>(u21);
-        Node<Unit> u22Node = new Node<Unit>(u22);
-        Node<Unit> u23Node = new Node<Unit>(u23);
-        Node<Unit> u31Node = new Node<Unit>(u31);
-        Node<Unit> u32Node = new Node<Unit>(u32);
+            ArrayList<ArrayList<Node<Unit>>> arrLayers = new ArrayList<ArrayList<Node<Unit>>>();
+            String checkName = ".";
+            int index = 0;
+            ArrayList<Node<Unit>> layer = new ArrayList<Node<Unit>>();
 
-        root.getChild().add(u11Node);
-        root.getChild().add(u12Node);
+            Node<Unit> root = new Node<Unit>(new Unit("ROOT", -1, -1, -1));
+            ArrayList<Node<Unit>> firstElement = new ArrayList<Node<Unit>>();
+            firstElement.add(root);
+            arrLayers.add(firstElement);
 
-        // children of u1.1
-        u11Node.getChild().add(u21Node);
-        u11Node.getChild().add(u22Node);
-        u11Node.getChild().add(u23Node);
+            while (myReader.hasNextLine()) {
 
-        // children of u1.2
-        u12Node.getChild().add(u21Node);
-        u12Node.getChild().add(u22Node);
-        u12Node.getChild().add(u23Node);
+                String data = myReader.nextLine();
+                String[] unitInfo = data.split(";");
 
-        // children of u2.1 (from u1.1)
-        u21Node.getChild().add(u31Node);
-        u21Node.getChild().add(u32Node);
+                String name = unitInfo[0];
+                if (name.contains(checkName)) {
+                    index += 1;
+                    name += "." + index;
 
-        // children of u2.2 (from u1.1)
-        u22Node.getChild().add(u31Node);
-        u22Node.getChild().add(u32Node);
+                    // Final data
+                    if (!myReader.hasNextLine()) { arrLayers.add(layer); }
 
-        // children of u2.3 (from u1.1)
-        u23Node.getChild().add(u31Node);
-        u23Node.getChild().add(u32Node);
+                } else {
+                    if (layer.size() != 0) { arrLayers.add(layer); }
 
-		// Function Call
-		Timetable t = new Timetable();
-        t.printAllRootToLeafPaths(root);
+                    layer = new ArrayList<Node<Unit>>();
+                    checkName = name;
+                    index = 1;
+                    name += "." + index;
+                }
+                int day = Integer.parseInt(unitInfo[1]);
+                int startTime = Integer.parseInt(unitInfo[2]);
+                int endTime = Integer.parseInt(unitInfo[3]);
+
+                // Create a Unit object
+                Unit unit = new Unit(name, day, startTime, endTime);
+
+                // Create the Node
+                Node<Unit> unitNode = new Node<Unit>(unit);
+                layer.add(unitNode);
+            }
+            myReader.close();
+
+            // Add children
+            int arrLayersSize = arrLayers.size(); // get the Array of Layers' size
+            for (int i = 0; i < arrLayersSize - 1; i++) {
+
+                int layerSize = arrLayers.get(i).size(); // get the current size
+                for (int j = 0; j < layerSize; j++) {
+
+                    int nextLayerSize = arrLayers.get(i + 1).size(); // get the next size
+                    for (int k = 0; k < nextLayerSize; k++) {
+
+                        arrLayers.get(i).get(j).getChild().add(arrLayers.get(i + 1).get(k));
+                    }
+                }
+            }
+
+            return arrLayers;
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println("File Not Found.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+        // Function Call
+        Timetable t = new Timetable();
+        ArrayList<ArrayList<Node<Unit>>> data = readFromFile("sampledata2.csv");
+
+        t.printAllRootToLeafPaths(data.get(0).get(0));
 
         // Preferences
         int numberOfDays = 2;
         int numberOfMinutes = 0;
         boolean wantsMorning = true;
         boolean wantsAfternoon = false;
+
+        System.out.println("No of Days:      " + numberOfDays);
+        System.out.println("No of Minutes:   " + numberOfMinutes);
+        System.out.println("Wants Morning:   " + wantsMorning);
+        System.out.println("Wants Afternoon: " + wantsAfternoon);
+        System.out.println();
 
         // Displaying the result
         int index = 1;
@@ -211,17 +254,25 @@ public class Timetable {
                 continue;
             }
 
+            String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             System.out.println("Possible Schedule No. " + index);
+            System.out.println("----------------+---------------+---------------+---------------");
+            System.out.println("Event\t\t| Day\t\t| Start Time\t| End Time");
+            System.out.println("----------------+---------------+---------------+---------------");
             for (Unit c1 : c) {
                 if (c1.toString() == "ROOT") {
                     continue;
                 }
-                System.out.print(c1 + " ");
+                System.out.print(c1 + "\t| ");
+                System.out.print(String.format("%-14s", days[c1.getDay() - 1]) + "| ");
+                System.out.print(String.format("%-14s", c1.getStartTime()));
+                System.out.println("| " + c1.getEndTime());
             }
-            System.out.println("\n");
+            System.out.println("----------------+---------------+---------------+---------------");
+            System.out.println();
             index++;
         }
-	}
+    }
 }
 
-// This code is contributed by sanjeev2552
+// printPath(), printAllRootToLeafPaths(), printAllRootToLeafPaths() codes are contributed by sanjeev2552
